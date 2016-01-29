@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="questmap">
+  <head>
+    <title>Questmap</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAersw4KtOJM1n9usSt7YL0o6awrrJ3Elc&callback=initMap">
+    </script>
+    <link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body ng-controller="main">
+    <header>
+      <h1>QUESTMAP</h1>
+      <summary>a map of quests</summary>
+    </header>
+
+    <%= yield %>
+
+  </body>
+</html>
