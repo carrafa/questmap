@@ -1,27 +1,29 @@
 <div class=left>
-  <h1>QUESTS</h1>
 
   <form>
-    <input ng-model="lat" type="text" id="lat" placeholder="lat">
-    <input ng-model="lon" type="text" id="lon" placeholder="lon">
-    <input ng-model="name" type="text" id="name" placeholder="name">
-    <textarea ng-model="quest" id="quest" placeholder="what is your quest?"></textarea>
-    <button ng-click="markIt()">add</button>
+    <input ng-model="newQuest.lat" type="text" id="lat" placeholder="lat">
+    <input ng-model="newQuest.lon" type="text" id="lon" placeholder="lon">
+    <input ng-model="newQuest.name" type="text" id="name" placeholder="name">
+    <textarea ng-model="newQuest.quest" id="quest" placeholder="what is your quest?"></textarea>
+    <button ng-click="createQuest()">add</button>
   </form>
 
-  <div>lat: {{lat}}</div>
-  <div>lon: {{lon}}</div>
-  <div>name: {{name}}</div>
-  <div>quest: {{quest}}</div>
+  <div>lat: {{newQuest.lat}}</div>
+  <div>lon: {{newQuest.lon}}</div>
+  <div>name: {{newQuest.name}}</div>
+  <div>quest: {{newQuest.quest}}</div>
 
   <h3>all quests</h3>
+
   <ul>
-    <li ng-repeat="quest in quests">
-      <div>{{lat}}</div>
-      <div>{{lon}}</div>
-      <div>{{name}}</div>
-      <div>{{quest}}</div>
+    
+    <li ng-repeat="quest in quests" class="quest">
+      <div>{{quest.lat}}</div>
+      <div>{{quest.lon}}</div>
+      <div>{{quest.name}}</div>
+      <div>{{quest.quest}}</div>
     </li>
+
   </ul>
 
 </div>

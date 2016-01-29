@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require controllers/main
+//= require services/questsApi
 //= require app
 //= require_tree .
 
