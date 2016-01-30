@@ -1,1 +1,1 @@
-angular.module('questmap', ['mainController', 'questsApiFactory'])
+angular.module('questmap', ['mainController', 'questsApiFactory', ])

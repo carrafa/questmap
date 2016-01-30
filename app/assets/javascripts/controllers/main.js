@@ -13,12 +13,25 @@ angular.module('mainController', [])
     $scope.updateQuests = function() {
       questsApi.getAll().then(function(response) {
         $scope.quests = response.data.quests;
+        $scope.getMarkerData($scope.quests);
+      })
+    };
+
+    $scope.getMarkerData = function() {
+      var markerArray = [];
+      questsApi.getAll().then(function(response) {
+        quests = response.data.quests
+        quests.forEach(function(quest) {
+
+          newMarker = {
+            lat: parseInt(quest.lat),
+            lng: parseInt(quest.lon)
+          };
+          markerArray.push(newMarker);
+        });
+        initMap($scope.initMapOptions, markerArray);
       })
     }
-
-    $scope.latLng = function() {
-      return new google.maps.LatLng($scope.lat, $scope.lon);
-    };
 
     $scope.createQuest = function() {
       addMarker();
@@ -26,75 +39,64 @@ angular.module('mainController', [])
         $scope.quests = response.data.quests;
         $scope.newQuest = {};
         $scope.updateQuests();
-      })
+      });
     };
 
-    function addMarker(latLng) {
-      console.log('marker? ', latLng)
-      var pos = $scope.latLng()
-      var mapOptions = {
-        zoom: 9,
-        center: pos
-      }
-
-      var map = new google.maps.Map(document.getElementById("map"),
-        mapOptions);
-
-
-      map.addListener('click', function(e) {
-        addMarker(e.latLng)
-        $scope.lat = e.latLng.lat();
-        $scope.lon = e.latLng.lng();
-
-      })
-
-
-
+    function addMarker(latLng, map) {
       var marker = new google.maps.Marker({
         map: map,
         draggable: true,
         animation: google.maps.Animation.DROP,
-        position: pos,
-        title: $scope.note
+        position: latLng
       });
-
-      marker.addListener('click', toggleBounce);
       marker.setMap(map);
+      marker.addListener('click', toggleBounce);
+    };
 
-      function toggleBounce() {
-        if (marker.getAnimation() !== null) {
-          marker.setAnimation(null);
-        } else {
-          marker.setAnimation(google.maps.Animation.BOUNCE);
-        }
+    function toggleBounce() {
+      if (marker.getAnimation() !== null) {
+        marker.setAnimation(null);
+      } else {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
       }
-    }
+    };
+
 
     $scope.updateQuests();
+
+    $(function() {
+      // initMap(initMapOptions);
+    })
+
+    var initMapOptions = {
+      center: {
+        lat: 40.712784,
+        lng: -74.005941
+      },
+      scrollwheel: false,
+      zoom: 8
+    }
+
+    var map;
+
+    function initMap(mapOptions, markerArray) {
+      var map = new google.maps.Map(document.getElementById('map'),
+        initMapOptions);
+
+      console.log('markerArray in initMap', markerArray);
+
+      for (i = 0; i < markerArray.length; i++) {
+        addMarker(markerArray[i], map);
+      }
+
+      map.addListener('mousedown', function(e) {
+        addMarker(e.latLng)
+        $scope.newQuest.lat = e.latLng.lat();
+        $scope.newQuest.lon = e.latLng.lng();
+      });
+
+    }
 
 
 
   }]);
-
-var initMapOptions = {
-  center: {
-    lat: 40.712784,
-    lng: -74.005941
-  },
-  scrollwheel: false,
-  zoom: 8
-}
-
-function initMap(mapOptions) {
-  // Create a map object and specify the DOM element for display.
-  var map = new google.maps.Map(document.getElementById('map'),
-    initMapOptions);
-
-  map.addListener('click', function(e) {
-    addMarker(e.latLng)
-    $scope.lat = e.latLng.lat();
-    $scope.lon = e.latLng.lng();
-
-  })
-
-}
