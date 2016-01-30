@@ -25,7 +25,9 @@ angular.module('mainController', [])
 
           newMarker = {
             lat: parseInt(quest.lat),
-            lng: parseInt(quest.lon)
+            lng: parseInt(quest.lon),
+            quest: quest.quest,
+            name: quest.name
           };
           markerArray.push(newMarker);
         });
@@ -34,7 +36,8 @@ angular.module('mainController', [])
     }
 
     $scope.createQuest = function() {
-      addMarker();
+      $scope.newQuest.fav_color = $scope.newQuest.fav_color.toString();
+      console.log("COLOR: ", $scope.newQuest.fav_color)
       questsApi.createQuest($scope.newQuest).then(function(response) {
         $scope.quests = response.data.quests;
         $scope.newQuest = {};
@@ -42,14 +45,32 @@ angular.module('mainController', [])
       });
     };
 
-    function addMarker(latLng, map) {
+    function addMarker(markerData, map) {
+      latLng = {
+        lat: markerData.lat,
+        lng: markerData.lng
+      }
+
+      var contentString = "<div class='bold'>" + markerData.name +
+        "</div><br><div>" + markerData.quest + "</div>";
+
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+
       var marker = new google.maps.Marker({
         map: map,
         draggable: true,
         animation: google.maps.Animation.DROP,
-        position: latLng
+        position: latLng,
+        icon: sword,
+        title: name
       });
+
       marker.setMap(map);
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
     };
 
     $scope.updateQuests();
@@ -64,6 +85,16 @@ angular.module('mainController', [])
     }
 
     var map;
+    var sword = {
+      path: "M15.862,18.586 L16.802,1.694 L16.803,1.665 C16.803,0.747 16.056,0 15.138,0 L8.862,0 C7.944,0 7.197,0.747 7.197,1.665 L8.138,18.586 L0.401,18.586 L0.401,21.332 L2.724,21.332 L2.724,23.447 L6.759,23.447 L6.169,79.921 L6.176,79.921 L6.245,80.2 L11.473,88.805 L11.473,88.83 L11.488,88.83 L12.199,90 L17.762,80.186 L17.872,79.896 L17.83,79.898 L17.323,23.562 C17.323,23.522 17.321,23.486 17.32,23.447 L21.276,23.447 L21.276,21.332 L23.599,21.332 L23.599,18.586 L15.862,18.586 L15.862,18.586 Z M8.862,1.054 L11.779,1.054 L11.938,18.388 L9.182,18.388 L8.251,1.653 C8.257,1.321 8.529,1.054 8.862,1.054 L8.862,1.054 Z M11.473,79.926 L11.473,86.775 L7.224,79.804 L7.813,23.447 L11.474,23.447 L11.474,79.926 L11.473,79.926 Z M12.527,87.286 L12.527,79.927 L12.527,23.447 L16.268,23.447 C16.269,23.486 16.27,23.525 16.27,23.567 L16.776,79.75 L12.527,87.286 L12.527,87.286 Z M20.223,22.394 L3.777,22.394 L3.777,21.755 L20.222,21.755 L20.222,22.394 L20.223,22.394 Z M22.546,20.278 L1.454,20.278 L1.454,19.64 L22.545,19.64 L22.545,20.278 L22.546,20.278 Z",
+      fillColor: 'black',
+      fillOpacity: 1,
+      scale: 0.6,
+      anchor: new google.maps.Point(15, 100),
+      strokeColor: 'black',
+      strokeWeight: 0.7
+    };
+    //need to separate this stuff out.
 
     function initMap(mapOptions, markerArray) {
 

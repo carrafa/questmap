@@ -1,9 +1,9 @@
 <div class="column quests-column">
 
   <form class="new-quest">
-    <div>click to drop a pin on the map</div>
-    <input ng-model="newQuest.lat" type="text" id="lat" placeholder="lat">
-    <input ng-model="newQuest.lon" type="text" id="lon" placeholder="lon">
+    <div>click to drop a sword on the map</div>
+    <div><span class="bold">lat:</span> {{newQuest.lat}}</div>
+    <div><span class="bold">lon:</span> {{newQuest.lon}}</div>
     <div>what is your name?</div>
     <input ng-model="newQuest.name" type="text" id="name" placeholder="name">
     <div>what is your quest?</div>
@@ -12,12 +12,7 @@
     <input ng-model="newQuest.fav_color" type="color" class="color-picker" placeholder="name">
     <button ng-click="createQuest()" class="save-button">save quest</button>
   </form>
-
-  <div>lat: {{newQuest.lat}}</div>
-  <div>lon: {{newQuest.lon}}</div>
-  <div>name: {{newQuest.name}}</div>
-  <div>quest: {{newQuest.quest}}</div>
-
+  <div>color{{newQuest.fav_color}}</div>
   <h3>all quests</h3>
 
   <ul class="quests-container">
