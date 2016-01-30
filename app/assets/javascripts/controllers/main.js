@@ -57,8 +57,11 @@ angular.module('mainController', [])
         lng: markerData.lng
       }
 
-      var contentString = "<div class='bold'>" + markerData.name +
-        "</div><br><div>" + markerData.quest + "</div>";
+      var contentString =
+        "<div class='marker'><div class='marker-name'>" +
+        markerData.name +
+        "</div><div class='marker-quest'>" + markerData.quest +
+        "</div></div>";
 
       var infowindow = new google.maps.InfoWindow({
         content: contentString
@@ -87,7 +90,7 @@ angular.module('mainController', [])
       },
       scrollwheel: false,
       zoom: 15
-    }
+    };
 
     var map;
     var sword = {
@@ -99,7 +102,6 @@ angular.module('mainController', [])
       strokeColor: 'black',
       strokeWeight: 0.7
     };
-
 
     //need to separate this stuff out.
 

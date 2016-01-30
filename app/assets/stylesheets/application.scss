@@ -137,6 +137,13 @@
    box-shadow: 5px 5px 5px $shadowColor;
    border-radius: .5em;
  }
+ .marker{
+   font-family: $main-font;
+   .marker-name{
+    font-weight: bold;
+    font-size: 1.5em;
+   }
+ }
 
  .quest{
    width: 100%;
@@ -145,4 +152,12 @@
    border-radius: .5em;
    margin-bottom: 1em;
    padding: .5em;
+   .crossed-swords{
+     height: 2em;
+     width: 2em;
+     position: absolute;
+     right: 1em;
+    //  margin-left: 90%;
+     margin-top: -2em;
+   }
  }
