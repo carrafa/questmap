@@ -85,6 +85,7 @@
   width: 100%;
   height: 2em;
   box-shadow: 2px 2px 2px 2px $shadowColor;
+  text-shadow: 2px 2px 2px 2px black;
   cursor: pointer;
   background-color: $button-color;
   font-family: $main-font;
@@ -109,6 +110,7 @@
    margin-top: .2em;
    border-radius: .4em;
    box-shadow: 2px 2px 2px $shadowColor;
+   font-family: $main-font;
  }
 
  textarea{

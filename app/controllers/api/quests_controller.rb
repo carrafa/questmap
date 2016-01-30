@@ -13,7 +13,7 @@ class Api::QuestsController < ApplicationController
   private
 
   def quest_params
-    params.require(:quest).permit(:lat, :lon, :name, :quest)
+    params.require(:quest).permit(:lat, :lon, :name, :quest, :fav_color, :swords)
   end
 
 end

@@ -10,6 +10,12 @@ angular.module('mainController', [])
 
     $scope.newQuest = {};
 
+    $scope.newQuest.fav_color = "#f0f0f0";
+
+    $scope.$watch('newQuest.fav_color', function(newVal) {
+      console.log($scope.newQuest.fav_color);
+    });
+
     $scope.updateQuests = function() {
       questsApi.getAll().then(function(response) {
         $scope.quests = response.data.quests;
@@ -24,8 +30,8 @@ angular.module('mainController', [])
         quests.forEach(function(quest) {
 
           newMarker = {
-            lat: parseInt(quest.lat),
-            lng: parseInt(quest.lon),
+            lat: Number(quest.lat),
+            lng: Number(quest.lon),
             quest: quest.quest,
             name: quest.name
           };
@@ -60,7 +66,6 @@ angular.module('mainController', [])
 
       var marker = new google.maps.Marker({
         map: map,
-        draggable: true,
         animation: google.maps.Animation.DROP,
         position: latLng,
         icon: sword,
@@ -81,7 +86,7 @@ angular.module('mainController', [])
         lng: -74.005941
       },
       scrollwheel: false,
-      zoom: 8
+      zoom: 15
     }
 
     var map;
@@ -94,6 +99,8 @@ angular.module('mainController', [])
       strokeColor: 'black',
       strokeWeight: 0.7
     };
+
+
     //need to separate this stuff out.
 
     function initMap(mapOptions, markerArray) {

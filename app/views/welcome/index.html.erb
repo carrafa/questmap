@@ -5,11 +5,11 @@
     <div><span class="bold">lat:</span> {{newQuest.lat}}</div>
     <div><span class="bold">lon:</span> {{newQuest.lon}}</div>
     <div>what is your name?</div>
-    <input ng-model="newQuest.name" type="text" id="name" placeholder="name">
+    <input ng-model="newQuest.name" type="text" id="name" placeholder="name" autocomplete="off">
     <div>what is your quest?</div>
-    <textarea ng-model="newQuest.quest" id="quest" placeholder="what is your quest?"></textarea>
+    <textarea ng-model="newQuest.quest" id="quest" placeholder="what is your quest?" autocomplete="off"></textarea>
     <div class="color-picker"> what is your favorite color?</div>
-    <input ng-model="newQuest.fav_color" type="color" class="color-picker" placeholder="name">
+    <input ng-model="newQuest.fav_color" type="color" class="color-picker">
     <button ng-click="createQuest()" class="save-button">save quest</button>
   </form>
   <div>color{{newQuest.fav_color}}</div>
