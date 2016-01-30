@@ -29,17 +29,26 @@ angular.module('mainController', [])
       })
     };
 
-    function addMarker() {
+    function addMarker(latLng) {
+      console.log('marker? ', latLng)
       var pos = $scope.latLng()
       var mapOptions = {
         zoom: 9,
         center: pos
       }
 
-      console.log('clicked');
-
       var map = new google.maps.Map(document.getElementById("map"),
         mapOptions);
+
+
+      map.addListener('click', function(e) {
+        addMarker(e.latLng)
+        $scope.lat = e.latLng.lat();
+        $scope.lon = e.latLng.lng();
+
+      })
+
+
 
       var marker = new google.maps.Marker({
         map: map,
@@ -66,3 +75,26 @@ angular.module('mainController', [])
 
 
   }]);
+
+var initMapOptions = {
+  center: {
+    lat: 40.712784,
+    lng: -74.005941
+  },
+  scrollwheel: false,
+  zoom: 8
+}
+
+function initMap(mapOptions) {
+  // Create a map object and specify the DOM element for display.
+  var map = new google.maps.Map(document.getElementById('map'),
+    initMapOptions);
+
+  map.addListener('click', function(e) {
+    addMarker(e.latLng)
+    $scope.lat = e.latLng.lat();
+    $scope.lon = e.latLng.lng();
+
+  })
+
+}
