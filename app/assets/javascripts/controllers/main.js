@@ -18,7 +18,6 @@ angular.module('mainController', [])
 
     $scope.latLng = function() {
       return new google.maps.LatLng($scope.lat, $scope.lon);
-      console.log($scope.lat)
     };
 
     $scope.createQuest = function() {
