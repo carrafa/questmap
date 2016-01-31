@@ -7,23 +7,24 @@
     <div>what is your name?</div>
     <input ng-model="newQuest.name" type="text" id="name" placeholder="name" autocomplete="off">
     <div>what is your quest?</div>
-    <textarea ng-model="newQuest.quest" id="quest" placeholder="what is your quest?" autocomplete="off"></textarea>
+    <textarea ng-model="newQuest.quest" id="quest" placeholder="quest" autocomplete="off"></textarea>
     <div class="color-picker"> what is your favorite color?</div>
     <input ng-model="newQuest.fav_color" type="color" class="color-picker">
     <button ng-click="createQuest()" class="save-button">save quest</button>
   </form>
-  <div>color{{newQuest.fav_color}}</div>
   <h3>all quests</h3>
+  <input ng-model="search" placeholder="search">
 
   <ul class="quests-container">
 
-    <li ng-repeat="quest in quests" class="quest">
+    <li ng-repeat="quest in quests | filter:search track by $index" class="quest">
       <div>{{quest.lat}}</div>
       <div>{{quest.lon}}</div>
       <div><span class="bold">Name:</span> {{quest.name}}</div>
       <div><span class="bold">Quest:</span> {{quest.quest}}</div>
-      <div class="crossed-swords">
+      <div class="crossed-swords" ng-click="updateQuest(quest.id, quest.swords)">
         <%= render 'partials/crossed_swords' %>
+        <div class="swords">{{quest.swords}}</span>
       </div>
     </li>
 

@@ -10,6 +10,11 @@ class Api::QuestsController < ApplicationController
     render json: new_quest
   end
 
+  def update
+    quest = Quest.find(params[:id])
+    quest.update(quest_params)
+    render json: quest
+  end
   private
 
   def quest_params

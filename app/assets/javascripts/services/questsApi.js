@@ -15,6 +15,13 @@ angular.module('questsApiFactory', [])
       return $http.post(baseUrl, payload);
     }
 
+    questsInterface.updateQuest = function(id, swords, callback) {
+      var payload = {
+        swords: swords
+      };
+      return $http.put(baseUrl + "/" + id, payload)
+    }
+
     return questsInterface;
 
   }])

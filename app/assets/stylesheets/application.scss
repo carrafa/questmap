@@ -153,11 +153,19 @@
    margin-bottom: 1em;
    padding: .5em;
    .crossed-swords{
-     height: 2em;
-     width: 2em;
+     height: 5em;
+     width: 5em;
      position: absolute;
      right: 1em;
     //  margin-left: 90%;
-     margin-top: -2em;
+     margin-top: -5em;
+     cursor: pointer;
+   }
+   .swords{
+     text-align: center;
+     margin-top: -1em;
+     font-size: 6em;
+     opacity: 0.8;
+     color: snow;
    }
  }
