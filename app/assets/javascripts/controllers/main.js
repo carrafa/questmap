@@ -156,7 +156,7 @@ angular.module('mainController', [])
           "featureType": "administrative.country",
           "elementType": "all",
           "stylers": [{
-            "visibility": "simplified"
+            "visibility": "off"
           }, {
             "color": "#776340"
           }, {
@@ -166,7 +166,7 @@ angular.module('mainController', [])
           "featureType": "administrative.province",
           "elementType": "all",
           "stylers": [{
-            "visibility": "simplified"
+            "visibility": "off"
           }, {
             "color": "#776340"
           }]
@@ -174,13 +174,13 @@ angular.module('mainController', [])
           "featureType": "administrative.province",
           "elementType": "geometry.fill",
           "stylers": [{
-            "visibility": "on"
+            "visibility": "off"
           }]
         }, {
           "featureType": "administrative.province",
           "elementType": "geometry.stroke",
           "stylers": [{
-            "visibility": "on"
+            "visibility": "off"
           }]
         }, {
           "featureType": "administrative.neighborhood",
