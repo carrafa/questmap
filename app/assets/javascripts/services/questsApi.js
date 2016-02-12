@@ -1,6 +1,6 @@
 angular.module('questsApiFactory', [])
   .factory('questsApi', ['$http', function($http) {
-    var baseUrl = "http://localhost:3000/api/quests";
+    var baseUrl = "http://questmap.heroku.com/api/quests";
 
     var questsInterface = {};
 
