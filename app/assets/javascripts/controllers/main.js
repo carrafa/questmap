@@ -95,11 +95,11 @@ angular.module('mainController', [])
 
     var initMapOptions = {
       center: {
-        lat: 40.712784,
-        lng: -74.005941
+        lat: 40.732784,
+        lng: -73.975941
       },
       scrollwheel: false,
-      zoom: 15
+      zoom: 13
     };
 
     var map;
