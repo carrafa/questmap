@@ -43,7 +43,8 @@ angular.module('mainController', [])
             lat: Number(quest.lat),
             lng: Number(quest.lon),
             quest: quest.quest,
-            name: quest.name
+            name: quest.name,
+            color: quest.fav_color
           };
           markerArray.push(newMarker);
         });
@@ -61,6 +62,7 @@ angular.module('mainController', [])
       });
     };
 
+
     function addMarker(markerData, map) {
       latLng = {
         lat: markerData.lat,
@@ -76,6 +78,10 @@ angular.module('mainController', [])
       var infowindow = new google.maps.InfoWindow({
         content: contentString
       });
+
+      sword.fillColor = markerData.color;
+      sword.strokeColor = markerData.color;
+      console.log(sword);
 
       var marker = new google.maps.Marker({
         map: map,
