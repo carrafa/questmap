@@ -4,7 +4,7 @@ drop a sword! save your quest!
 
 <img src="./screenshots/screenshot01.png" width="100%">
 
-rails runs the back end framework!
+the server uses rails!
 
 the database uses psql!
 
