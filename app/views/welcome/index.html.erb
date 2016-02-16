@@ -18,8 +18,8 @@
   <ul class="quests-container">
 
     <li ng-repeat="quest in quests | filter:search track by $index" class="quest">
-      <div>{{quest.lat}}</div>
-      <div>{{quest.lon}}</div>
+      <div>latitude: {{quest.lat}}</div>
+      <div>longitude: {{quest.lon}}</div>
       <div><span class="bold">Name:</span> {{quest.name}}</div>
       <div><span class="bold">Quest:</span> {{quest.quest}}</div>
       <div class="crossed-swords" ng-click="updateQuest(quest.id, quest.swords)">

@@ -6,7 +6,7 @@ angular.module('mainController', [])
     $scope.name = '';
     $scope.quest = '';
 
-    $scope.quests = {};
+    $scope.quests = [];
 
     $scope.newQuest = {
       swords: 0
