@@ -54,7 +54,6 @@ angular.module('mainController', [])
 
     $scope.createQuest = function() {
       $scope.newQuest.fav_color = $scope.newQuest.fav_color.toString();
-      console.log("COLOR: ", $scope.newQuest.fav_color)
       questsApi.createQuest($scope.newQuest).then(function(response) {
         $scope.quests = response.data.quests;
         $scope.newQuest = {};
@@ -81,7 +80,6 @@ angular.module('mainController', [])
 
       sword.fillColor = markerData.color;
       sword.strokeColor = markerData.color;
-      console.log(sword);
 
       var marker = new google.maps.Marker({
         map: map,
@@ -435,14 +433,41 @@ angular.module('mainController', [])
         addMarker(markerArray[i], map);
       }
 
+      var newSwords = [];
+
+      function renderNewSword() {
+        for (i = 0; i < newSwords.length; i++) {
+          newSwords[i].setMap(null);
+        };
+        newSwords[newSwords.length - 1].setMap(map);
+      }
+
       map.addListener('click', function(e) {
+
+        var color = document.getElementById('fav-color').value;
+
         latLng = {
           lat: e.latLng.lat(),
-          lng: e.latLng.lng()
-        }
-        addMarker(latLng, map)
-        $scope.newQuest.lat = e.latLng.lat();
-        $scope.newQuest.lon = e.latLng.lng();
+          lng: e.latLng.lng(),
+        };
+
+        sword.fillColor = color;
+        sword.strokeColor = color;
+
+        var marker = new google.maps.Marker({
+          map: map,
+          animation: google.maps.Animation.DROP,
+          position: latLng,
+          icon: sword,
+          title: name
+        });
+
+        $scope.newQuest.lat = latLng.lat;
+        $scope.newQuest.lon = latLng.lng;
+
+        newSwords.push(marker);
+        renderNewSword();
+
       });
 
     }

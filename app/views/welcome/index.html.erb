@@ -2,14 +2,14 @@
 
   <form class="new-quest">
     <div>click to drop a sword on the map</div>
-    <div><span class="bold">lat:</span> {{newQuest.lat}}</div>
-    <div><span class="bold">lon:</span> {{newQuest.lon}}</div>
+    <!-- <div><span class="bold">lat:</span> {{newQuest.lat}}</div> -->
+    <!-- <div><span class="bold">lon:</span> {{newQuest.lon}}</div> -->
     <div>what is your name?</div>
     <input ng-model="newQuest.name" type="text" id="name" placeholder="name" autocomplete="off">
     <div>what is your quest?</div>
     <textarea ng-model="newQuest.quest" id="quest" placeholder="quest" autocomplete="off"></textarea>
     <div class="color-picker"> what is your favorite color?</div>
-    <input ng-model="newQuest.fav_color" type="color" class="color-picker">
+    <input ng-model="newQuest.fav_color" type="color" class="color-picker" id="fav-color">
     <button ng-click="createQuest()" class="save-button">save quest</button>
   </form>
   <h3>all quests</h3>
